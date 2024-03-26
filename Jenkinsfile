@@ -7,12 +7,17 @@ pipeline {
     }
     stages {
         stage("Prepare") {
+            environment {
+              APP = credentials("bernhard_rahasia")
+            }
             agent {
               node {
                 label "linux && java17"
               }
             }
             steps {
+              echo("App User : ${APP_USR}")
+              echo("App Password : ${APP_PSW}")
               echo("Author : ${AUTHOR}")
               echo("Email : ${EMAIL}")
               echo("Web : ${WEB}")
