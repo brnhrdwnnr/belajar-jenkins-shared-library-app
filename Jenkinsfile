@@ -6,11 +6,36 @@ pipeline {
       WEB = "https://www.belumada.com"
     }
 
+    parameters {
+      string(name: "NAME", defaultValue: "Guest", description: "What is your name")
+      text(name: "DESCRIPTION", defaultValue: "", description: "Tell me about yourself")
+      booleanParam(name: "DEPLOY", defaultValue: false, description: "Need to deploy")
+      choice(name: "SOCIAL_MEDIA", choices: ['INSTAGRAM', 'FACEBOOK', 'TWITTER'], description: "Which social media")
+      password(name: "SECRET", defaultValue: "", description: "Encrypt Key")
+    }
+
     options {
       disableConcurrentBuilds()
       timeout(time: 10, unit: 'MINUTES')
     }
+    
     stages {
+        stage("Parameter") {
+            agent {
+              node {
+                label "linux && java17"
+              }
+            }
+            steps {
+              echo("Hello: ${params.NAME}")
+              echo("Your description is: ${params.DESCRIPTION}")
+              echo("Your social media is: ${params.SOCIAL_MEDIA}")
+              echo("Need to deploy: ${params.DEPLOY} to deploy!")
+              echo("You secret is : ${params.SECRET}")
+            }
+        }
+
+
         stage("Prepare") {
             environment {
               APP = credentials("bernhard_rahasia")
