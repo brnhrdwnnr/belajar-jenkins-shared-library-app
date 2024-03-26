@@ -6,6 +6,10 @@ pipeline {
       WEB = "https://www.belumada.com"
     }
 
+    triggers {
+      cron("*/5 * * * *")
+    }
+
     parameters {
       string(name: "NAME", defaultValue: "Guest", description: "What is your name")
       text(name: "DESCRIPTION", defaultValue: "", description: "Tell me about yourself")
