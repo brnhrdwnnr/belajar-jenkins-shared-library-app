@@ -20,12 +20,12 @@ pipeline {
         }
 
         stage("Test") {
+            agent {
+              node {
+                label "linux && java17"
+              }
+            }
             steps {
-                agent {
-                  node {
-                    label "linux && java17"
-                  }
-                }
                 script {
                   def data = [
                     "firstName": "Eko",
@@ -41,12 +41,12 @@ pipeline {
         }
 
         stage("Deploy") {
-            steps {
-                agent {
-                  node {
-                    label "linux && java17"
-                  }
+            agent {
+                node {
+                 label "linux && java17"
                 }
+            }
+            steps {
                 echo ("Hello Deploy 1")
                 sleep(5)
                 echo ("Hello Deploy 2")
