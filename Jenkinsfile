@@ -33,7 +33,7 @@ pipeline {
                 values "linux", "windows", "mac"
               }
               axis {
-                name "ARCH"
+                name "ARC"
                 values "32", "64"
               }
             }
