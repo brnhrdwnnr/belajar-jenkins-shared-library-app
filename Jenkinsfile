@@ -41,7 +41,7 @@ pipeline {
               stage("OS Setup") {
                 agent {
                   node {
-                    label "linux && java11"
+                    label "linux && java17"
                   }
                 }
                 steps {
