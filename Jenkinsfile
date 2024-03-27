@@ -2,4 +2,6 @@
 
 import bernhard.jenkins.Output;
 
-mavenPipeline()
+bernPipeline([
+    type: "test"
+])
