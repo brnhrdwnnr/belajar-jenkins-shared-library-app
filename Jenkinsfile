@@ -202,7 +202,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(
-                  credentialsId: "bern_rahasia",
+                  credentialsId: "bernhard_rahasia",
                   usernameVariable: "USER",
                   passwordVariable: "PASSWORD"
                 )]) {
