@@ -3,5 +3,5 @@
 import bernhard.jenkins.Output;
 
 bernPipeline([
-    type: "test"
+    type: "maven"
 ])
