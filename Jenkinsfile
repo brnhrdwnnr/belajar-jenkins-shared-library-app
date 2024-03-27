@@ -93,6 +93,7 @@ pipeline {
 
             }
        }
+
         stage("Parameter") {
             agent {
               node {
@@ -107,7 +108,6 @@ pipeline {
               echo("You secret is : ${params.SECRET}")
             }
         }
-
 
         stage("Prepare") {
             environment {
@@ -130,7 +130,6 @@ pipeline {
               echo("Branch Name : ${env.BRANCH_NAME}")
             }
         }
-
 
         stage("Build") {
             agent {
@@ -202,7 +201,13 @@ pipeline {
                 }
             }
             steps {
-                echo ("Release it")
+                withCredentials([usernamePassword(
+                  credentialsId: "bern_rahasia",
+                  usernameVariable: "USER",
+                  passwordVariable: "PASSWORD"
+                )]) {
+                  sh('echo "Release it with -u $USER -p $PASSWORD" > "release.txt"')
+                }
             }
         }
     }
